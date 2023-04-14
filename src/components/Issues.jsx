@@ -154,10 +154,10 @@ export function Issues() {
             id="speakers-title"
             className="font-display text-4xl font-medium tracking-tighter text-blue-600 sm:text-5xl"
           >
-            eMend's Data Platform
+            Data Platform
           </h2>
           <p className="mt-4 font-display text-2xl tracking-tight text-blue-900">
-            Unparalleled insight into the world's most pressing environmental concerns
+            Unparalleled insight into the most pressing environmental concerns
           </p>
         </div>
         <Tab.Group
