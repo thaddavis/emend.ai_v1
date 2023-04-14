@@ -17,7 +17,7 @@ export default function Home() {
         <title>Emend.ai - Environment Insight</title>
         <meta
           name="description"
-          content="At DeceptiConf you’ll learn about the latest dark patterns being developed to trick even the smartest visitors, and you’ll learn how to deploy them without ever being detected."
+          content="Emend.ai leverages the latest in A.I. big data algorithms to provide unprecedented insight into our environment."
         />
       </Head>
       <Header />
