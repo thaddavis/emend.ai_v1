@@ -30,3 +30,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+www_emend_ai.*
+www_emend_ai_chain.crt

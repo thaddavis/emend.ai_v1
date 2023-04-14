@@ -51,9 +51,11 @@ pm2 start npm --name "nextjs" -- run start -- -p 8000
 
 - pm2 show nextjs
 - pm2 logs 
+- 
 
 ## Check nginx status on Ubuntu
 
 https://linuxconfig.org/how-to-check-nginx-status-on-ubuntu
 sudo nginx -t
 systemctl status nginx
+sudo systemctl reload nginx
