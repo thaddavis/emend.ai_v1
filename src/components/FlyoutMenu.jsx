@@ -20,52 +20,122 @@ import asia from '@/images/icons/regions/asia.svg'
 import island from '@/images/icons/regions/island.svg'
 import volcano from '@/images/icons/regions/volcano.svg'
 
-const metrics = [
-  { name: 'Temperature', onClick: () => {}, icon: thermometer },
-  { name: 'Rainfall', onClick: () => {}, icon: rain },
-  {
-    name: 'Humidity',
-    onClick: () => {},
-    icon: humidity,
-  },
-  { name: 'Fog', onClick: () => {}, icon: fog },
-  { name: 'Air Quality', onClick: () => {}, icon: airQuality },
-  { name: 'Water Quality', onClick: () => {}, icon: waterQuality },
-]
+export const FlyoutMenu = (props) => {
+  const { onItemClick } = props
 
-const regions = [
-  { name: 'Americas', onClick: () => {}, icon: americas },
-  { name: 'Europe', onClick: () => {}, icon: europe },
-  { name: 'Africa', onClick: () => {}, icon: africa },
-  { name: 'Asia', onClick: () => {}, icon: asia },
-  { name: 'Caribbean', onClick: () => {}, icon: island },
-  { name: 'Volcanic', onClick: () => {}, icon: volcano },
-]
+  const metrics = [
+    {
+      name: 'Temperature',
+      onClick: () => {
+        onItemClick('Temperature')
+      },
+      icon: thermometer,
+    },
+    {
+      name: 'Rainfall',
+      onClick: () => {
+        onItemClick('Rainfall')
+      },
+      icon: rain,
+    },
+    {
+      name: 'Humidity',
+      onClick: () => {
+        onItemClick('Humidity')
+      },
+      icon: humidity,
+    },
+    {
+      name: 'Fog',
+      onClick: () => {
+        onItemClick('Fog')
+      },
+      icon: fog,
+    },
+    {
+      name: 'Air Quality',
+      onClick: () => {
+        onItemClick('Air Quality')
+      },
+      icon: airQuality,
+    },
+    {
+      name: 'Water Quality',
+      onClick: () => {
+        onItemClick('Water Quality')
+      },
+      icon: waterQuality,
+    },
+  ]
 
-const recentPosts = [
-  {
-    id: 1,
-    title: 'Flooding',
-    href: '#',
-    date: '',
-    datetime: '',
-    category: { title: 'Coastal', href: '#' },
-    imageUrl: flooding,
-    description: '',
-  },
-  {
-    id: 2,
-    title: 'Water Quality',
-    href: '#',
-    date: '',
-    datetime: '',
-    category: { title: 'Coastal', href: '#' },
-    imageUrl: water_quality_photo,
-    description: '',
-  },
-]
+  const regions = [
+    {
+      name: 'Americas',
+      onClick: () => {
+        onItemClick('Americas')
+      },
+      icon: americas,
+    },
+    {
+      name: 'Europe',
+      onClick: () => {
+        onItemClick('Europe')
+      },
+      icon: europe,
+    },
+    {
+      name: 'Africa',
+      onClick: () => {
+        onItemClick('Africa')
+      },
+      icon: africa,
+    },
+    {
+      name: 'Asia',
+      onClick: () => {
+        onItemClick('Asia')
+      },
+      icon: asia,
+    },
+    {
+      name: 'Caribbean',
+      onClick: () => {
+        onItemClick('Caribbean')
+      },
+      icon: island,
+    },
+    {
+      name: 'Volcanic',
+      onClick: () => {
+        onItemClick('Volcanic')
+      },
+      icon: volcano,
+    },
+  ]
 
-export const FlyoutMenu = () => {
+  const recentPosts = [
+    {
+      id: 1,
+      title: 'Flooding',
+      href: null,
+      onClick: () => {
+        onItemClick('Flooding')
+      },
+      category: { title: 'Coastal', href: '#' },
+      imageUrl: flooding,
+    },
+    {
+      id: 2,
+      title: 'Water Quality',
+      href: null,
+      onClick: () => {
+        onItemClick('Water Quality')
+      },
+      category: { title: 'Coastal', href: '#' },
+      imageUrl: water_quality_photo,
+    },
+  ]
+
   return (
     <Popover className="relative isolate z-50 shadow">
       <div className="bg-white py-5">
@@ -99,7 +169,8 @@ export const FlyoutMenu = () => {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="flex gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
+                        className="flex cursor-pointer gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
+                        onClick={item.onClick}
                       >
                         <Image
                           src={item.icon}
@@ -123,7 +194,8 @@ export const FlyoutMenu = () => {
                       <a
                         key={item.name}
                         href={item.href}
-                        className="flex gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
+                        className="flex cursor-pointer gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
+                        onClick={item.onClick}
                       >
                         <Image
                           src={item.icon}
@@ -155,22 +227,17 @@ export const FlyoutMenu = () => {
                   </div>
                   <div>
                     <div className="flex items-center gap-x-4">
-                      <a
-                        href={post.category.href}
-                        className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100"
-                      >
+                      <a className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100">
                         {post.category.title}
                       </a>
                     </div>
-                    <h4 className="mt-2 text-sm font-semibold leading-6 text-gray-900">
-                      <a href={post.href}>
-                        <span className="absolute inset-0" />
-                        {post.title}
-                      </a>
+                    <h4
+                      className="mt-2 cursor-pointer text-sm font-semibold leading-6 text-gray-900"
+                      onClick={post.onClick}
+                    >
+                      <span className="absolute inset-0" />
+                      {post.title}
                     </h4>
-                    <p className="mt-2 text-sm leading-6 text-gray-600">
-                      {post.description}
-                    </p>
                   </div>
                 </article>
               ))}
