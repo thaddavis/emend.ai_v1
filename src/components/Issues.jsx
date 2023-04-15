@@ -18,12 +18,12 @@ import airQuality from '@/images/icons/metrics/svg/air_quality.svg'
 import rain from '@/images/icons/metrics/svg/rain.svg'
 import waterQuality from '@/images/icons/metrics/svg/water_quality.svg'
 import fog from '@/images/icons/metrics/svg/fog.svg'
-import thermometer from "@/images/icons/metrics/svg/thermometer.svg"
+import thermometer from '@/images/icons/metrics/svg/thermometer.svg'
 
-import flooding from "@/images/icons/coasts/flooding.svg"
-import biodiversity from "@/images/icons/coasts/biodiversity.svg"
+import flooding from '@/images/icons/coasts/flooding.svg'
+import biodiversity from '@/images/icons/coasts/biodiversity.svg'
 
-const days = [
+const issues = [
   {
     name: 'Metrics',
     key: '2022-04-04',
@@ -54,36 +54,36 @@ const days = [
       },
     ],
   },
-  {
-    name: 'Regions',
-    key: '2022-04-05',
-    dimensions: [
-      {
-        name: 'Americas',
-        image: americas,
-      },
-      {
-        name: 'Europe',
-        image: europe,
-      },
-      {
-        name: 'Africa',
-        image: africa,
-      },
-      {
-        name: 'Asia',
-        image: asia,
-      },
-      {
-        name: 'Caribbean',
-        image: island,
-      },
-      {
-        name: 'Volcanic',
-        image: volcano,
-      },
-    ],
-  },
+  // {
+  //   name: 'Regions',
+  //   key: '2022-04-05',
+  //   dimensions: [
+  //     {
+  //       name: 'Americas',
+  //       image: americas,
+  //     },
+  //     {
+  //       name: 'Europe',
+  //       image: europe,
+  //     },
+  //     {
+  //       name: 'Africa',
+  //       image: africa,
+  //     },
+  //     {
+  //       name: 'Asia',
+  //       image: asia,
+  //     },
+  //     {
+  //       name: 'Caribbean',
+  //       image: island,
+  //     },
+  //     {
+  //       name: 'Volcanic',
+  //       image: volcano,
+  //     },
+  //   ],
+  // },
   {
     name: 'Coasts',
     key: '2022-04-06',
@@ -95,10 +95,6 @@ const days = [
       {
         name: 'Water Quality',
         image: waterQuality,
-      },
-      {
-        name: 'Biodiversity',
-        image: biodiversity,
       },
     ],
   },
@@ -169,7 +165,7 @@ export function Issues() {
             <div className="absolute bottom-0 left-0.5 top-2 hidden w-px bg-slate-200 lg:block" />
             <Tab.List className="grid auto-cols-auto grid-flow-col justify-start gap-x-8 gap-y-10 whitespace-nowrap px-4 sm:mx-auto sm:max-w-2xl sm:grid-cols-3 sm:px-0 sm:text-center lg:grid-flow-row lg:grid-cols-1 lg:text-left">
               {({ selectedIndex }) =>
-                days.map((day, dayIndex) => (
+                issues.map((day, dayIndex) => (
                   <div key={day.key} className="relative lg:pl-8">
                     <DiamondIcon
                       className={clsx(
@@ -200,7 +196,7 @@ export function Issues() {
             </Tab.List>
           </div>
           <Tab.Panels className="lg:col-span-3">
-            {days.map((day) => (
+            {issues.map((day) => (
               <Tab.Panel
                 key={day.key}
                 className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 sm:gap-y-16 md:grid-cols-3 [&:not(:focus-visible)]:focus:outline-none"

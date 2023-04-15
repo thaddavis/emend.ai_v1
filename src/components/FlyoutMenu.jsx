@@ -68,50 +68,50 @@ export const FlyoutMenu = (props) => {
     },
   ]
 
-  const regions = [
-    {
-      name: 'Americas',
-      onClick: () => {
-        onItemClick('Americas')
-      },
-      icon: americas,
-    },
-    {
-      name: 'Europe',
-      onClick: () => {
-        onItemClick('Europe')
-      },
-      icon: europe,
-    },
-    {
-      name: 'Africa',
-      onClick: () => {
-        onItemClick('Africa')
-      },
-      icon: africa,
-    },
-    {
-      name: 'Asia',
-      onClick: () => {
-        onItemClick('Asia')
-      },
-      icon: asia,
-    },
-    {
-      name: 'Caribbean',
-      onClick: () => {
-        onItemClick('Caribbean')
-      },
-      icon: island,
-    },
-    {
-      name: 'Volcanic',
-      onClick: () => {
-        onItemClick('Volcanic')
-      },
-      icon: volcano,
-    },
-  ]
+  //   const regions = [
+  //     {
+  //       name: 'Americas',
+  //       onClick: () => {
+  //         onItemClick('Americas')
+  //       },
+  //       icon: americas,
+  //     },
+  //     {
+  //       name: 'Europe',
+  //       onClick: () => {
+  //         onItemClick('Europe')
+  //       },
+  //       icon: europe,
+  //     },
+  //     {
+  //       name: 'Africa',
+  //       onClick: () => {
+  //         onItemClick('Africa')
+  //       },
+  //       icon: africa,
+  //     },
+  //     {
+  //       name: 'Asia',
+  //       onClick: () => {
+  //         onItemClick('Asia')
+  //       },
+  //       icon: asia,
+  //     },
+  //     {
+  //       name: 'Caribbean',
+  //       onClick: () => {
+  //         onItemClick('Caribbean')
+  //       },
+  //       icon: island,
+  //     },
+  //     {
+  //       name: 'Volcanic',
+  //       onClick: () => {
+  //         onItemClick('Volcanic')
+  //       },
+  //       icon: volcano,
+  //     },
+  //   ]
 
   const recentPosts = [
     {
@@ -166,30 +166,6 @@ export const FlyoutMenu = (props) => {
                 <div className="mt-6 flow-root">
                   <div className="-my-2">
                     {metrics.map((item) => (
-                      <div
-                        key={item.name}
-                        className="flex cursor-pointer gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
-                        onClick={item.onClick}
-                      >
-                        <Image
-                          src={item.icon}
-                          alt={item.name}
-                          className="h-6 w-6 flex-none text-gray-400"
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-sm font-medium leading-6 text-gray-500">
-                  Regions
-                </h3>
-                <div className="mt-6 flow-root">
-                  <div className="-my-2">
-                    {regions.map((item) => (
                       <div
                         key={item.name}
                         className="flex cursor-pointer gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"

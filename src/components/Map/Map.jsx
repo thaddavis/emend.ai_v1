@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState, Suspense } from 'react'
 import * as d3 from 'd3'
 import { useResize } from '@/hooks/useResize'
 import { drawMap } from './helpers/drawMap'
+import { callAI } from './helpers/callAI'
 
 import { Modal } from '../Modal'
 import { FlyoutMenu } from '../FlyoutMenu'
@@ -94,7 +95,7 @@ export const Map = () => {
         isModalOpen={modalState.isModalOpen}
         promptTemplate={modalState.promptTemplate}
         setModalState={setModalState}
-        callAI={(promptTemplate) => {
+        callAI={async (promptTemplate, queryContent) => {
           console.log('calling A.I.', promptTemplate)
 
           // debugger
@@ -109,7 +110,7 @@ export const Map = () => {
             error: null,
           })
 
-          console.log('Call A.I.')
+          const res = await callAI(promptTemplate, queryContent)
 
           setAIresp({
             val: [

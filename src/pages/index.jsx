@@ -24,10 +24,10 @@ export default function Home() {
       <main>
         <Hero />
         {/* <Speakers /> */}
-        <Issues/>
+        <Issues />
 
         {/* <Schedule /> */}
-        <Sponsors />
+        {/* <Sponsors /> */}
         <Newsletter />
       </main>
       <Footer />
