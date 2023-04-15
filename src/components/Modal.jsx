@@ -6,6 +6,8 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 export const Modal = (props) => {
   const { isModalOpen, promptTemplate, setModalState, callAI } = props
 
+  const [queryContent, setQueryContent] = useState('')
+
   const cancelButtonRef = useRef(null)
 
   return (
@@ -66,13 +68,21 @@ export const Modal = (props) => {
                     </div>
                   </div>
                 </div>
+                <div>
+                  <textarea
+                    rows={4}
+                    value={queryContent} // ...force the input's value to match the state variable...
+                    className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    onChange={(e) => setQueryContent(e.target.value)} // ... and update the state variable on any edits!
+                  />
+                </div>
                 <div className="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-2 sm:gap-3">
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
+                    className="inline-flex w-full justify-center rounded-md bg-[#2463eb] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:col-start-2"
                     onClick={() => {
                       console.log('query A.I.')
-                      callAI()
+                      callAI(queryContent)
                     }}
                   >
                     Ask A.I.

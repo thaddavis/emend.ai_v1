@@ -51,7 +51,7 @@ export const Map = () => {
             mapStateRef.current.x = event.transform.x
             mapStateRef.current.y = event.transform.y
           })
-          .scaleExtent([1, 2])
+          .scaleExtent([1, 1])
       )
       .append('g')
 
@@ -60,6 +60,7 @@ export const Map = () => {
     let projection = d3
       .geoMercator()
       .center([0, 0])
+      // .center([mapStateRef.current.x, mapStateRef.current.y])
       // .translate([mapStateRef.current.x, mapStateRef.current.y])
       .translate([size.width / 2, size.height / 2])
       // .translate([
@@ -93,7 +94,9 @@ export const Map = () => {
         isModalOpen={modalState.isModalOpen}
         promptTemplate={modalState.promptTemplate}
         setModalState={setModalState}
-        callAI={() => {
+        callAI={(promptTemplate) => {
+          console.log('calling A.I.', promptTemplate)
+
           // debugger
           setModalState({
             isModalOpen: false,

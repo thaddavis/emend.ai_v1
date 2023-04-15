@@ -1,4 +1,37 @@
 export function drawMap(d3, svg, map, projection, matches = []) {
+  const tooltip = d3
+    .select('#chart-area')
+    .append('div')
+    .style('opacity', 0)
+    .style('position', 'absolute')
+    .attr('class', 'tooltip')
+    .style('background-color', 'white')
+    .style('border-radius', '5px')
+    .style('border', '3px solid #2463eb')
+    .style('padding', '10px')
+    .style('color', 'black')
+
+  const showTooltip = function (evt) {
+    console.log(evt)
+
+    tooltip.transition().duration(200)
+    tooltip
+      .style('opacity', 1)
+      .html('Info')
+      .style('left', evt.clientX + 30 + 'px')
+      .style('top', evt.clientY + 30 + 'px')
+  }
+
+  const moveTooltip = function (evt) {
+    tooltip
+      .style('left', evt.clientX + 30 + 'px')
+      .style('top', evt.clientY + 30 + 'px')
+  }
+
+  const hideTooltip = function (evt) {
+    tooltip.transition().duration(200).style('opacity', 0)
+  }
+
   const mapPaths = svg
     .append('g')
     .attr('id', 'zoom-container')
@@ -45,7 +78,7 @@ export function drawMap(d3, svg, map, projection, matches = []) {
 
   // draw matches
   for (let i = 0; i < matches.length; i++) {
-    console.log('matches[]', matches[i])
+    // console.log('matches[]', matches[i])
 
     if (matches[i].blurb) {
       let lat = matches[i].lat
@@ -57,6 +90,18 @@ export function drawMap(d3, svg, map, projection, matches = []) {
         .data([{ lon, lat }], (d) => 'd')
         // .data([{ lon, lat, name }])
         .join('circle')
+        .on('mouseover', (evt) => {
+          console.log('!@#!@#!@# mouseover', evt)
+          showTooltip(evt)
+        })
+        .on('mousemove', (evt) => {
+          console.log('!@#!@#!@# mousemove')
+          moveTooltip(evt)
+        })
+        .on('mouseleave', (evt) => {
+          console.log('!@#!@#!@# mouseleave')
+          hideTooltip(evt)
+        })
         .attr('cx', function (d) {
           return projection([d.lon, d.lat])[0]
         })
@@ -76,6 +121,15 @@ export function drawMap(d3, svg, map, projection, matches = []) {
         .attr('d', d3.geoPath().projection(projection))
         .style('opacity', 1)
         .style('stroke', 'rgba(0,0,0, 0.5)')
+      // .on('click', () => {
+      //   console.log('mouseover')
+      // })
+      // .on('mousemove', () => {
+      //   console.log('mousemove')
+      // })
+      // .on('mouseleave', () => {
+      //   console.log('mouseleave')
+      // })
       // .transition()
       // .duration(1000)
       // .style("opacity", 0)
