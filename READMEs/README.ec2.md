@@ -59,3 +59,10 @@ https://linuxconfig.org/how-to-check-nginx-status-on-ubuntu
 sudo nginx -t
 systemctl status nginx
 sudo systemctl reload nginx
+
+## Redeploying
+
+git pull
+npm i
+npm run build
+pm2 restart 7
