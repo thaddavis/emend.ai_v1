@@ -3,6 +3,8 @@ import * as d3 from 'd3'
 import { useResize } from '@/hooks/useResize'
 import { drawMap } from './helpers/drawMap'
 
+import { FlyoutMenu } from '../FlyoutMenu'
+
 import map from './world.json'
 
 export const Map = () => {
@@ -38,22 +40,25 @@ export const Map = () => {
   }, [size])
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        width: '100vw',
-        height: '100vh',
-      }}
-    >
+    <>
+      <FlyoutMenu />
       <div
-        style={{ height: '100%', width: '100%' }}
-        className="chart-area"
-        id="chart-area"
-        ref={rootRef}
-      ></div>
-    </div>
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          width: '100vw',
+          height: '100vh',
+        }}
+      >
+        <div
+          style={{ height: '100%', width: '100%' }}
+          className="chart-area"
+          id="chart-area"
+          ref={rootRef}
+        ></div>
+      </div>
+    </>
   )
 }
