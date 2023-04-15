@@ -5,6 +5,7 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import { DiamondIcon } from '@/components/DiamondIcon'
+import { useRouter } from 'next/router'
 
 import americas from '@/images/icons/regions/americas.svg'
 import europe from '@/images/icons/regions/europe.svg'
@@ -41,10 +42,6 @@ const issues = [
         image: humidity,
       },
       {
-        name: 'Fog',
-        image: fog,
-      },
-      {
         name: 'Air Quality',
         image: airQuality,
       },
@@ -54,36 +51,6 @@ const issues = [
       },
     ],
   },
-  // {
-  //   name: 'Regions',
-  //   key: '2022-04-05',
-  //   dimensions: [
-  //     {
-  //       name: 'Americas',
-  //       image: americas,
-  //     },
-  //     {
-  //       name: 'Europe',
-  //       image: europe,
-  //     },
-  //     {
-  //       name: 'Africa',
-  //       image: africa,
-  //     },
-  //     {
-  //       name: 'Asia',
-  //       image: asia,
-  //     },
-  //     {
-  //       name: 'Caribbean',
-  //       image: island,
-  //     },
-  //     {
-  //       name: 'Volcanic',
-  //       image: volcano,
-  //     },
-  //   ],
-  // },
   {
     name: 'Coasts',
     key: '2022-04-06',
@@ -120,6 +87,7 @@ function ImageClipPaths({ id, ...props }) {
 
 export function Issues() {
   let id = useId()
+  let router = useRouter()
   let [tabOrientation, setTabOrientation] = useState('horizontal')
 
   useEffect(() => {
@@ -218,6 +186,9 @@ export function Issues() {
                       <div
                         className="absolute inset-0 bg-indigo-50"
                         style={{ clipPath: `url(#${id}-${speakerIndex % 3})` }}
+                        onClick={() => {
+                          router.push('/charts')
+                        }}
                       >
                         <Image
                           className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-110"

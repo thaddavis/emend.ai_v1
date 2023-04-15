@@ -46,13 +46,6 @@ export const FlyoutMenu = (props) => {
       icon: humidity,
     },
     {
-      name: 'Fog',
-      onClick: () => {
-        onItemClick('Fog')
-      },
-      icon: fog,
-    },
-    {
       name: 'Air Quality',
       onClick: () => {
         onItemClick('Air Quality')
