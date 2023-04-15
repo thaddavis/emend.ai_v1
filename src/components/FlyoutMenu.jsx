@@ -166,9 +166,8 @@ export const FlyoutMenu = (props) => {
                 <div className="mt-6 flow-root">
                   <div className="-my-2">
                     {metrics.map((item) => (
-                      <a
+                      <div
                         key={item.name}
-                        href={item.href}
                         className="flex cursor-pointer gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
                         onClick={item.onClick}
                       >
@@ -179,7 +178,7 @@ export const FlyoutMenu = (props) => {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -191,9 +190,8 @@ export const FlyoutMenu = (props) => {
                 <div className="mt-6 flow-root">
                   <div className="-my-2">
                     {regions.map((item) => (
-                      <a
+                      <div
                         key={item.name}
-                        href={item.href}
                         className="flex cursor-pointer gap-x-4 py-2 text-sm font-semibold leading-6 text-gray-900"
                         onClick={item.onClick}
                       >
@@ -204,7 +202,7 @@ export const FlyoutMenu = (props) => {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -227,9 +225,9 @@ export const FlyoutMenu = (props) => {
                   </div>
                   <div>
                     <div className="flex items-center gap-x-4">
-                      <a className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100">
+                      <h5 className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100">
                         {post.category.title}
-                      </a>
+                      </h5>
                     </div>
                     <h4
                       className="mt-2 cursor-pointer text-sm font-semibold leading-6 text-gray-900"

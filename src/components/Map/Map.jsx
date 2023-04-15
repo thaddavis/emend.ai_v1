@@ -1,21 +1,30 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, Suspense } from 'react'
 import * as d3 from 'd3'
 import { useResize } from '@/hooks/useResize'
 import { drawMap } from './helpers/drawMap'
 
 import { Modal } from '../Modal'
-
 import { FlyoutMenu } from '../FlyoutMenu'
-
+import { Loader } from '../Loader'
 import map from './world.json'
 
 export const Map = () => {
   const rootRef = useRef(null)
   const size = useResize(rootRef)
 
+  const [AIresp, setAIresp] = useState({
+    loading: false,
+    val: [],
+    error: null,
+  })
   const [modalState, setModalState] = useState({
     isModalOpen: false,
     promptTemplate: '',
+  })
+
+  const mapStateRef = React.useRef({
+    x: 0,
+    y: 0,
   })
 
   useEffect(() => {
@@ -36,23 +45,41 @@ export const Map = () => {
         d3
           .zoom()
           .on('zoom', function (event) {
+            console.log('event', event)
             svg.attr('transform', event.transform)
+
+            mapStateRef.current.x = event.transform.x
+            mapStateRef.current.y = event.transform.y
           })
-          .scaleExtent([1, 1])
+          .scaleExtent([1, 2])
       )
       .append('g')
 
+    console.log('mapStateRef.current ->', mapStateRef.current)
+
     let projection = d3
       .geoMercator()
-      .center([0, 0]) // center: [0, 10],
-      .scale(300) //   zoom: 300,
+      .center([0, 0])
+      // .translate([mapStateRef.current.x, mapStateRef.current.y])
       .translate([size.width / 2, size.height / 2])
+      // .translate([
+      // mapStateRef.current.x,
+      // mapStateRef.current.y,
+      // -562, 541,
+      // 6, 1330,
+      // -80.1918, 25.7617,
+      // ])
+      .scale(300) //   zoom: 300,
+    // .translate([mapStateRef.current.x, mapStateRef.current.y])
 
-    drawMap(d3, svg, map, projection)
-  }, [size])
+    drawMap(d3, svg, map, projection, AIresp.val)
+  }, [size, AIresp])
+
+  console.log('AIresp.loading', AIresp.loading)
 
   return (
     <>
+      {AIresp.loading && <Loader />}
       <FlyoutMenu
         onItemClick={(promptTemplate) => {
           console.log('onItemClick')
@@ -66,6 +93,33 @@ export const Map = () => {
         isModalOpen={modalState.isModalOpen}
         promptTemplate={modalState.promptTemplate}
         setModalState={setModalState}
+        callAI={() => {
+          // debugger
+          setModalState({
+            isModalOpen: false,
+            promptTemplate: '',
+          })
+
+          setAIresp({
+            value: null,
+            loading: true,
+            error: null,
+          })
+
+          console.log('Call A.I.')
+
+          setAIresp({
+            val: [
+              {
+                lon: -80.1918,
+                lat: 25.7617,
+                blurb: 'asdfasdf',
+              },
+            ],
+            loading: false,
+            error: null,
+          })
+        }}
       />
       <div
         style={{
