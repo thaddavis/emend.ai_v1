@@ -11,13 +11,13 @@ export function drawMap(d3, svg, map, projection, matches = []) {
     .style('padding', '10px')
     .style('color', 'black')
 
-  const showTooltip = function (evt) {
-    console.log(evt)
+  const showTooltip = function (evt, d) {
+    console.log('#!#!#', evt, 'd', d)
 
     tooltip.transition().duration(200)
     tooltip
       .style('opacity', 1)
-      .html('Info')
+      .html(d.response)
       .style('left', evt.clientX + 30 + 'px')
       .style('top', evt.clientY + 30 + 'px')
   }
@@ -80,7 +80,7 @@ export function drawMap(d3, svg, map, projection, matches = []) {
   for (let i = 0; i < matches.length; i++) {
     // console.log('matches[]', matches[i])
 
-    if (matches[i].blurb) {
+    if (matches[i].response && matches[i].lat && matches[i].lat) {
       let lat = matches[i].lat
       let lon = matches[i].lon
       // let name = step.areas[i].name
@@ -92,11 +92,11 @@ export function drawMap(d3, svg, map, projection, matches = []) {
         .join('circle')
         .on('mouseover', (evt) => {
           console.log('!@#!@#!@# mouseover', evt)
-          showTooltip(evt)
+          showTooltip(evt, matches[i])
         })
         .on('mousemove', (evt) => {
           console.log('!@#!@#!@# mousemove')
-          moveTooltip(evt)
+          moveTooltip(evt, matches[i])
         })
         .on('mouseleave', (evt) => {
           console.log('!@#!@#!@# mouseleave')

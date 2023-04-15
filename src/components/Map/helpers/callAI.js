@@ -16,7 +16,7 @@ export async function callAI(promptTemplate, prompt, cb) {
     // console.log('response', response)
 
     var data = JSON.stringify({
-      action: 'temperature',
+      action: 'gpt',
       token: 'emendrocks',
       prompt: 'tell me something moreeee',
     })

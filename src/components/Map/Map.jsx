@@ -117,7 +117,8 @@ export const Map = () => {
               {
                 lon: -80.1918,
                 lat: 25.7617,
-                blurb: 'asdfasdf',
+                response:
+                  'Miami is a coastal city located in Florida. It is know for its beautiful beaches, lavish lifestyle, and nightlife.',
               },
             ],
             loading: false,
