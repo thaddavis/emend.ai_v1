@@ -32,6 +32,14 @@ export const Map = () => {
       .append('svg')
       .attr('width', width)
       .attr('height', height)
+      .call(
+        d3
+          .zoom()
+          .on('zoom', function (event) {
+            svg.attr('transform', event.transform)
+          })
+          .scaleExtent([1, 1])
+      )
       .append('g')
 
     let projection = d3
